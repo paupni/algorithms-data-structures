@@ -25,6 +25,7 @@ console.log(bubbleSort(numbers));
 // and partitioning the array into two subarrays: one containing elements smaller than the pivot, 
 // and the other containing elements larger than the pivot. 
 // The two subarrays are then recursively sorted until the entire array is sorted.
+
 // perform, at best and on average: O(n log (n)), in the worst case: O(n2)
 
 function quickSort (arr) {
@@ -46,3 +47,38 @@ function quickSort (arr) {
     
       return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
 }
+
+
+// -------------------      MERGE SORT     ----------------------
+// divide-and-conquer algorithm that sorts an array by first breaking it down into smaller arrays, 
+// and then building the array back together the correct way so that it is sorted
+
+// perform, at best and on average: O(n log (n)), in the worst case: O(n2)
+
+function mergeSort(arr) {
+    if (arr.length < 2) return arr;
+
+    const mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid, arr.length));
+
+    let resultArray = [];
+    let leftIndex = 0, rightIndex = 0;
+
+    while (leftIndex < left.length && rightIndex < right.length) {
+        if (left[leftIndex] < right[rightIndex]) {
+            resultArray.push(left[leftIndex]);
+            leftIndex++;
+        } else {
+            resultArray.push(right[rightIndex]);
+            rightIndex++;
+        }
+    }
+
+    return resultArray
+        .concat(left.slice(leftIndex))
+        .concat(right.slice(rightIndex));
+  };
+
+  console.log(mergeSort(numbers));
+  
