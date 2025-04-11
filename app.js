@@ -1,4 +1,4 @@
-const LinkedList = require('./LinkedList')
+const LinkedList = require('./LinkedList/LinkedList')
 
 const ll = new LinkedList();
 ll.insertAtHead(10);
